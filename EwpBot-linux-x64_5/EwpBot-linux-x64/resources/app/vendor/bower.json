@@ -1,0 +1,26 @@
+{
+  "name": "EwpBot",
+  "homepage": "https://github.com/Green-Elephant/EwpBot",
+  "authors": [
+    "GreenElephantt <GreenElephantt@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.7.0",
+    "paper-dropdown-menu": "PolymerElements/paper-dropdown-menu#^1.5.0",
+    "paper-toggle-button": "PolymerElements/paper-toggle-button#^1.3.0",
+    "paper-input": "PolymerElements/paper-input#^1.1.23",
+    "paper-button": "PolymerElements/paper-button#^1.0.14",
+    "paper-item": "PolymerElements/paper-item#^1.2.1",
+    "paper-listbox": "PolymerElements/paper-listbox#^1.1.2"
+  }
+}

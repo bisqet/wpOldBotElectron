@@ -1,0 +1,194 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Мировая Политика</title>
+    <link href="img/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link rel="stylesheet" href="МП_files/Мировая политика_files/common.css">
+    <script>
+      const ipc = require('electron').ipcRenderer;
+      let res = ipc.sendSync('setInf', 'ping');
+      res=JSON.parse(res);
+      window.id=res.id;
+      window.key=res.key;
+      console.log(id, key);
+    </script>
+</head>
+<body>
+<div class="page">
+
+    <header id="header">
+        <div class="side fl" id="user_photo" style="/*background-image:url(https://pp.vk.me/c626519/v626519267/4821e/F3rtp9Df6QI.jpg)*/" onclick="Profile(0);">
+            <span class="side-text"><!--Место для отобр лвла на пике --></span>
+        </div>
+        <div class="progress-block fl">
+            <div class="progress-energy">
+                <div class="progressbar" id="energy_strip">
+                    <div class="progress-label" id="energy"></div>
+                </div>
+                Энергия
+            </div>
+            <div class="progress-experience">
+                <div class="progressbar" id="exp_strip">
+                    <div class="progress-label" id="exp"></div>
+                </div>
+                Опыт
+            </div>
+        </div>
+        <div class="side fr" id="party_photo"></div>
+        <div class="vip fr" id="vip_label" onclick="VIPInfo();" style="background:none">VIP</div>
+        <div class="total fr" onclick="VoteConvert();">
+            <p id="total-rub"></p>
+            <p id="total-g"></p>
+        </div>
+        <div class="clear"></div>
+    </header>
+    <div class="content">
+        <div class="top">
+            <div class="nav-block fl">
+                <nav>
+                    <a onclick="SwitchContent('info');" class="nav-item info">
+                        <i class="icon"></i>
+                        <span class="nav-item-text">Инфо</span>
+                        <span class="msg-num"></span>
+                    </a>
+                    <a onclick="SwitchContent('messages');" class="nav-item msg">
+                        <i class="icon"></i>
+                        <span class="nav-item-text">Сообщения</span>
+                        <span class="msg-num"></span>
+                    </a>
+                    <a onclick="SwitchContent('media');" class="nav-item news">
+                        <i class="icon"></i>
+                        <span class="nav-item-text">СМИ</span>
+                    </a>
+                    <a onclick="SwitchContent('store');" class="nav-item cart">
+                        <i class="icon"></i>
+                        <span class="nav-item-text">Склад</span>
+                    </a>
+                    <a onclick="SwitchContent('work');" class="nav-item work">
+                        <i class="icon"></i>
+                        <span class="nav-item-text">Работа</span>
+                    </a>
+                    <a onclick="SwitchContent('state');" class="nav-item state">
+                        <i class="icon"></i>
+                        <span class="nav-item-text">Государство</span>
+                        <span class="msg-num"></span>
+                    </a>
+                    <a class="nav-item party" onclick="SwitchContent('party');">
+                        <i class="icon"></i>
+                        <span class="nav-item-text">Партия</span>
+                        <span class="msg-num"></span>
+                    </a>
+                    <a onclick="SwitchContent('map');" class="nav-item map">
+                        <i class="icon"></i>
+                        <span class="nav-item-text">Карта</span>
+                    </a>
+                    <a onclick="SwitchContent('top');" class="nav-item top">
+                        <i class="icon"></i>
+                        <span class="nav-item-text">Топ</span>
+                    </a>
+                </nav>
+            </div>
+            <div class="top-right fr" id="info_content">
+                <div class="block skills-block fl">
+                    <h2>Навыки</h2>
+                    <ul class="skills-list">
+                        <li id="skill_1" class="skills-item" onclick="UpSkill(1);">
+                            <a>
+                                <i class="icon power"></i>
+                                <span class="skill-name">Сила</span>
+                                <span class="num" id="skill_val_1">100</span>
+                                <span class="plus">+</span>
+                            </a>
+                        </li>
+                        <li id="skill_2" class="skills-item" onclick="UpSkill(2);">
+                            <a>
+                                <i class="icon mind"></i>
+                                <span class="skill-name">Интеллект</span>
+                                <span class="num" id="skill_val_2">100</span>
+                                <span class="plus">+</span>
+                            </a>
+                        </li>
+                        <li id="skill_3" class="skills-item" onclick="UpSkill(3);">
+                            <a>
+                                <i class="icon endurance"></i>
+                                <span class="skill-name">Выносливость</span>
+                                <span class="num" id="skill_val_3">100</span>
+                                <span class="plus">+</span>
+                            </a>
+                        </li>
+                        <li id="skill_4" class="skills-item" onclick="UpSkill(4);">
+                            <a>
+                                <i class="icon charisma"></i>
+                                <span class="skill-name">Харизма</span>
+                                <span class="num" id="skill_val_4">100</span>
+                                <span class="plus">+</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="block news-block fr">
+                    <h2>Новости</h2>
+                </div>
+                <div class="block region-block fr">
+                    <h2>Регион</h2>
+                </div>
+                <div class="block laws-block fl">
+                    <h2>Войны</h2>
+                </div>
+            </div>
+            <div class="top-right fr" id="messages_content"></div>
+            <div class="top-right fr" id="media_content"></div>
+            <div class="top-right fr" id="work_content"></div>
+            <div class="top-right fr" id="store_content"></div>
+            <div class="top-right fr" id="state_content"></div>
+            <div class="top-right fr" id="party_content"></div>
+            <div class="top-right fr" id="map_content"></div>
+            <div class="top-right fr" id="top_content"></div>
+            <div class="top-right fr" id="donate_content"></div>
+            <div class="top-right fr" id="profile_content"></div>
+            <div class="top-right fr" id="war_content"></div>
+            <div class="win-wrap">
+                <div class="win-layer"></div>
+                <div class="win" id="day-bonus"></div>
+                <div class="win simple-win" id="win-1-but"></div>
+                <div class="win simple-win" id="win-2-but"></div>
+                <div class="win study study-note" id="study-note"></div>
+                <div class="win study study-win" id="study-win"></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="block chat-block fl">
+            <h2 class="moved">Чат</h2>
+            <form class="chat-form" action="JavaScript:;" onkeypress="ctrlEnterChat(event);">
+                <input autocomplete="off" type="text" id="msg-input" class="input-text hint" data-hint="Сообщение в чат государства">
+                <button type="button" onclick="SendMessage()" class="bttn bttn-blue">Отправить</button>
+            </form>
+            <div class="msg-list scroll-pane">
+                <ul></ul>
+            </div>
+        </div>
+        <div class="block players-block fr">
+            <h2>Игроки</h2>
+            <div class="players scroll-pane">
+                <ul class="players-list"></ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="loader"></div>
+<div id="help">
+    <a href="https://vk.com/page-74349100_47879261" target="_blank">Первые шаги</a>
+    |<a href="https://vk.com/wp_game" target="_blank">Официальная группа</a>
+    |<a href="https://vk.com/topic-74349100_30175831" target="_blank">Задать вопрос</a>
+    |<a href="https://vk.com/wp_pr" target="_blank">Поиск партии</a>
+    |<a onclick="AddToMenu()">Добавить в меню</a>
+    |<a onclick="InviteFriends()">Пригласить друзей</a>
+</div>
+
+<script defer type="text/javascript" src="МП_files/Мировая политика_files/lib.js"></script>
+<script defer src="МП_files/Мировая политика_files/lang_ru.js?10"></script>
+<script defer src="МП_files/Мировая политика_files/common.js"></script>
+<script defer src="МП_files/Мировая политика_files/vkMethodsGetter.js"></script>
+</body>
+</html>

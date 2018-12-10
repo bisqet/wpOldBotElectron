@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="UTF-8"><!--TODO: style tag or stylesheet file -->
+      <title>Мировая Политика 0.3.0|by GEtt</title>
+      <script src="vendor/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+      <link rel="import" href="vendor/bower_components/paper-button/paper-button.html">
+      <link rel="import" href="vendor/bower_components/paper-input/paper-input.html">
+      <link rel="import" href="vendor/bower_components/paper-toggle-button/paper-toggle-button.html">
+      <link rel="import" href="vendor/bower_components/paper-dropdown-menu/paper-dropdown-menu-light.html">
+      <link rel="import" href="vendor/bower_components/paper-listbox/paper-listbox.html">
+      <link rel="import" href="vendor/bower_components/paper-item/paper-item.html">
+      <script>
+        // You can also require other files to run in this process
+        //require('./botsRenderer.js')
+      </script>
+      <script src="js/botsRenderer.js" defer></script>
+      <script src="js/pageRenderer.js" defer></script>
+      <script src="js/wpScriptsReqRouter.js" defer></script>
+      <script src="js/dbGetter.js" defer></script>
+
+      <style>
+          p{font-family: consolas}
+      </style>
+      <!--<link rel="import" href="vendor/bower_components/iron-icon/iron-icon.html">-->
+  </head>
+  <body>
+  <header id = 'header'>
+      <div id="botsContainer"></div>
+  </header>
+  <main style="text-align: center" id="main">
+      <p>Скрипты активируемые при входе в аккаунт:</p>
+      <div id="scriptsContainer" style="margin: 0;padding: 0;">
+          <div id="work">
+              <paper-toggle-button  id="workStatus" style="display: inline-block" noink></paper-toggle-button>
+              <paper-dropdown-menu-light id="workOn"   label = "работать на"  style="cursor:default">
+                  <paper-listbox class="dropdown-content">
+                      <paper-item label="1">Нефти</paper-item>
+                      <paper-item label="2">Руде</paper-item>
+                      <paper-item label="3">Угле</paper-item>
+                      <paper-item label="4">Золоте</paper-item>
+                      <paper-item label="5">Военке</paper-item>
+                      <paper-item label="6">Медицине</paper-item>
+                      <paper-item label="7">Образовании</paper-item>
+                      <paper-item label="8">Транспорте</paper-item>
+                      <paper-item label="9">СМИ</paper-item>
+                  </paper-listbox>
+              </paper-dropdown-menu-light>
+              <paper-dropdown-menu-light id="workEnergyRecovery"  label="энергию" class="dropdown-content"  style="cursor:default">
+                  <paper-listbox class="dropdown-content">
+                      <paper-item label="1">Восстанавливать</paper-item>
+                      <paper-item label="0">Не восстанавливать</paper-item>
+                  </paper-listbox>
+              </paper-dropdown-menu-light>
+          </div>
+      </div>
+
+      <p>Для входа укажите свой id и auth key</p>
+      <paper-input id = 'id' label = "Ваш ID" type="number" required auto-validate error-message="Введите ваш (цифровой) ID!"></paper-input>
+      <paper-input id = 'key' label = "Ваш KEY" type="text" required auto-validate error-message="Введите ваш auth key"></paper-input>
+      <paper-button onclick="render()"><!--<iron-icon  icon="check"></iron-icon>-->✓ Войти</paper-button>
+  </main>
+
+  <footer>
+      <paper-input is="iron-input" type="file" label = "Выберите файл с бд" id="dbSetter"></paper-input>
+      <paper-button onclick="dbSet()" >✓ Спасти и сохранить</paper-button>
+      <paper-button onclick="dbGet()">✓Вывести текущую дб на рабочий стол</paper-button>
+  </footer>
+  </body>
+</html>
